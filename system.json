@@ -21,8 +21,8 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
-  "url": "",
-  "manifest": "",
-  "download": "",
+  "url": "https://github.com/WolvesbaneManor/The_WATCH",
+  "manifest": "https://github.com/WolvesbaneManor/The_WATCH/raw/main/system.json",
+  "download": "https://github.com/WolvesbaneManor/The_WATCH/archive/refs/heads/main.zip",
   "license": "LICENSE.txt"
 }

@@ -1,9 +1,9 @@
 // Import document classes.
-import { TheWatchActor } from "./documents/actor.mjs";
-import { TheWatchItem } from "./documents/item.mjs";
+import { StarJunkersActor } from "./documents/actor.mjs";
+import { StarJunkersItem } from "./documents/item.mjs";
 // Import sheet classes.
-import { TheWatchActorSheet } from "./sheets/actor-sheet.mjs";
-import { TheWatchItemSheet } from "./sheets/item-sheet.mjs";
+import { StarJunkersActorSheet } from "./sheets/actor-sheet.mjs";
+import { StarJunkersItemSheet } from "./sheets/item-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { BOILERPLATE } from "./helpers/config.mjs";
@@ -16,9 +16,9 @@ Hooks.once('init', async function() {
 
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
-  game.thewatch = {
-    TheWatchActor,
-    TheWatchItem,
+  game.starjunkers = {
+    StarJunkersActor,
+    StarJunkersItem,
     rollItemMacro
   };
 
@@ -35,14 +35,14 @@ Hooks.once('init', async function() {
   };
 
   // Define custom Document classes
-  CONFIG.Actor.documentClass = TheWatchActor;
-  CONFIG.Item.documentClass = TheWatchItem;
+  CONFIG.Actor.documentClass = StarJunkersActor;
+  CONFIG.Item.documentClass = StarJunkersItem;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("thewatch", TheWatchActorSheet, { makeDefault: true });
+  Actors.registerSheet("starjunkers", StarJunkersActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("thewatch", TheWatchItemSheet, { makeDefault: true });
+  Items.registerSheet("starjunkers", StarJunkersItemSheet, { makeDefault: true });
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
@@ -93,7 +93,7 @@ async function createItemMacro(data, slot) {
   const item = data.data;
 
   // Create the macro command
-  const command = `game.thewatch.rollItemMacro("${item.name}");`;
+  const command = `game.starjunkers.rollItemMacro("${item.name}");`;
   let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
   if (!macro) {
     macro = await Macro.create({
@@ -101,7 +101,7 @@ async function createItemMacro(data, slot) {
       type: "script",
       img: item.img,
       command: command,
-      flags: { "thewatch.itemMacro": true }
+      flags: { "starjunkers.itemMacro": true }
     });
   }
   game.user.assignHotbarMacro(macro, slot);

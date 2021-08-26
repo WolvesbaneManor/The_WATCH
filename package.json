@@ -1,7 +1,7 @@
 {
-  "name": "starjunkers",
+  "name": "thewatch",
   "version": "1.0.0",
-  "description": "CSS compiler for the StarJunkers system",
+  "description": "CSS compiler for the TheWatch system",
   "scripts": {
     "build": "gulp build",
     "compile": "gulp css",

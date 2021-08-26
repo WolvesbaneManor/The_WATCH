@@ -1,13 +1,13 @@
 {
-  "name": "starjunkers",
-  "title": "Star Junkers",
-  "description": "A one-page RPG in which players take on the roles of the crew of a rundown salvage vessel taking jobs as they come across the StellarComm. It’s dirty and dangerous work, but it beats mining asteroids, waiting in line for water rations, or fighting the aliens some diplomat insulted because his hand twitched the wrong way.",
+  "name": "thewatch",
+  "title": "The W.A.T.C.H.",
+  "description": "A paranormal investigation role-playing game.",
   "version": "0.1.0",
   "minimumCoreVersion": "0.8.3",
   "compatibleCoreVersion": "0.8.9",
   "author": "Wolvesbane Manor",
-  "esmodules": ["module/starjunkers.mjs"],
-  "styles": ["css/starjunkers.css"],
+  "esmodules": ["module/thewatch.mjs"],
+  "styles": ["css/thewatch.css"],
   "scripts": [],
   "packs": [],
   "languages": [
@@ -21,8 +21,8 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
-  "url": "https://github.com/WolvesbaneManor/StarJunkers",
-  "manifest": "https://github.com/WolvesbaneManor/StarJunkers/raw/main/system.json",
-  "download": "https://github.com/WolvesbaneManor/StarJunkers/archive/refs/heads/main.zip",
+  "url": "https://github.com/WolvesbaneManor/The_WATCH",
+  "manifest": "https://github.com/WolvesbaneManor/The_WATCH/raw/main/system.json",
+  "download": "https://github.com/WolvesbaneManor/The_WATCH/archive/refs/heads/main.zip",
   "license": "LICENSE.txt"
 }

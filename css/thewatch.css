@@ -6,8 +6,20 @@
 
 .rollable:hover, .rollable:focus {
   color: #000;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px limegreen;
   cursor: pointer;
+}
+
+.thewatch input.stressbox {
+  width: 10px;
+  height: 10px;
+  margin-right: -15px;
+  position: relative;
+  vertical-align: bottom;
+}
+
+.thewatch input.stressbox-crit {
+  margin-right: -10px;
 }
 
 .grid,
@@ -18,6 +30,7 @@
   gap: 10px;
   margin: 10px 0;
   padding: 0;
+  max-width: 700px;
 }
 
 .grid-3col {
@@ -224,15 +237,110 @@
 }
 
 /* Styles limited to thewatch sheets */
-.thewatch {
-  /* ----------------------------------------- */
-  /*  Items Lists                              */
-  /* ----------------------------------------- */
-  /* Example style for TheWatch (can be removed if not needed) */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  position: static;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: lime;
+  text-align: left;
+  border-radius: 6px;
+  border: 2px double #ffaa22;
+
+  padding: 10px 10px 10px 10px;
+  height: fit-content;
+  width: 50%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.thewatch .window-content {
+  background:  #220044;
+  color: #000000;
+  color: #000000;
+  border: 2px groove #ffaa22;
+}
+
+.dialog .window-content, .dialog-button, .dialog .dialog-buttons button, .dialog .dialog-buttons button.default {
+  background: #033550;
+  color: #70ccff;
+  border: 2px groove #011330;
+}
+
+.thewatch input[type="text"],
+.thewatch input[type="number"],
+.thewatch input[type="password"],
+.thewatch input[type="date"],
+.thewatch input[type="time"],
+.thewatch select {
+  height: auto;
+  color: #000000;
+}
+
+.thewatch .item-sheet,
+.thewatch .item-sheet input[type="text"],
+.thewatch .item-sheet input[type="number"],
+.thewatch .item-sheet input[type="password"],
+.thewatch .item-sheet input[type="date"],
+.thewatch .item-sheet input[type="time"],
+.thewatch .item-sheet select {
+  height: auto;
+  color: #ffaa22;
+}
+
+.dialog-buttons button:hover,
+.dialog-buttons button:focus,
+.dialog-buttons button.default:hover,
+.dialog-buttons button.default:focus {
+  color: lime;
+  text-shadow: 0 0 10px lime;
+  box-shadow: 0 0 10px lime;
+}
+
+.thewatch .tabs .item.active,
+.thewatch .tabs .item:hover,
+.thewatch .tabs .item:focus,
+.thewatch .item-name h4:hover,
+.thewatch .item-name h4:focus,
+.thewatch .item-control:hover,
+.thewatch .item-control:focus {
+  color: lime;
+  text-shadow: 0 0 10px lime;
+}
+
+.thewatch .item-image{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.thewatch .item-image img:hover,
+.thewatch .item-image img:focus {
+  box-shadow: 0 0 10px lime;
+}
+
+option {
+  color: #000;
 }
 
 .thewatch .item-form {
   font-family: "Roboto", sans-serif;
+}
+
+.thewatch .window-content,
+.thewatch .window.header
+{
+  min-width: 775px;
 }
 
 .thewatch .sheet-header {
@@ -252,15 +360,40 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.thewatch .sheet-top {
+  background-image: url('../images/filetop.png');
+  background-repeat: no-repeat;
+  max-width: 775px;
+  min-height: 275px;
+  padding: 10px 35px 0 15px;
+}
+
+.thewatch .sheet-mid {
+  background-image: url('../images/filemiddle.png');
+  background-repeat: repeat-y;
+  max-width: 775px;
+  padding: 10px 35px 10px 25px;
+}
+
+.thewatch .sheet-bottom {
+  background-image: url('../images/filebottom.png');
+  background-repeat: no-repeat;
+  min-height: 50px;
+  max-width: 775px;
 }
 
 .thewatch .sheet-header .profile-img {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
-  flex: 0 0 100px;
-  height: 100px;
+  -ms-flex: 0 0 150px;
+  flex: 0 0 150px;
+  height: 150px;
   margin-right: 10px;
+  vertical-align: top;
+  border: 0;
 }
 
 .thewatch .sheet-header .header-fields {
@@ -294,7 +427,17 @@
   height: 100%;
 }
 
-.thewatch .tox .tox-editor-container {
+.thewatch .post-it {
+  position:relative;
+  margin: 10px;
+  background-color: cornflowerblue;
+  box-shadow: 0 10px 2px 1px #000;
+  width: 200px;
+  height: 200px;
+  left: 25px;
+}
+
+.thewatch .tox .tox-editor-coverer {
   background: #fff;
 }
 
@@ -338,7 +481,6 @@
   padding: 0;
   overflow-y: auto;
   scrollbar-width: thin;
-  color: #444;
 }
 
 .thewatch .items-list .item-list {
@@ -399,10 +541,6 @@
   border-bottom: none;
 }
 
-.thewatch .items-list .item .item-name {
-  color: #191813;
-}
-
 .thewatch .items-list .item .item-name .item-image {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 30px;
@@ -444,8 +582,8 @@
 
 .thewatch .item-formula {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 200px;
-  flex: 0 0 200px;
+  -ms-flex: 0 0 75px;
+  flex: 0 0 75px;
   padding: 0 8px;
 }
 
@@ -460,4 +598,72 @@
 
 .thewatch .effects .item .effect-controls {
   border: none;
+}
+
+#clockImg {
+  position: relative;
+  width: 300px;
+  z-index: 10;
+  border: 0;
+}
+.coverer {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  padding-bottom: 77%;
+  height: 0;
+  border: 0;
+}
+
+.clock {
+  display:flex;
+  justify-content: center;
+  align-items: top;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 0;
+}
+
+.clockface {
+  background-color: azure;
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  overflow:hidden;
+  top: 2%;
+}
+
+.half-circle, .half-circle-top {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: right center;
+}
+
+.half-circle:nth-child(1) {
+  background-color: blue;
+}
+
+.half-circle:nth-child(2) {
+  background-color: blue;
+}
+
+.half-circle-top {
+  background-color: azure;
+  z-index: 8;
+}
+
+.namelabel {
+  position: absolute;
+  top: 50px;
+  left: 750px;
+  margin-right: 15px;
+  margin-top: 50px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: center;
 }

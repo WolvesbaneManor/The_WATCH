@@ -1,4 +1,4 @@
-import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
+import { THEWATCH } from "../helpers/config.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -11,9 +11,9 @@ export class TheWatchActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["thewatch", "sheet", "actor"],
       template: "systems/thewatch/templates/actor/actor-sheet.html",
-      width: 600,
-      height: 600,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
+      width: 800,
+      height: 675,
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
   }
 
@@ -52,9 +52,7 @@ export class TheWatchActorSheet extends ActorSheet {
 
     // Add roll data for TinyMCE editors.
     context.rollData = context.actor.getRollData();
-
-    // Prepare active effects
-    context.effects = prepareActiveEffectCategories(this.actor.effects);
+    context.cfg = THEWATCH;
 
     return context;
   }
@@ -67,9 +65,9 @@ export class TheWatchActorSheet extends ActorSheet {
    * @return {undefined}
    */
   _prepareCharacterData(context) {
-    // Handle ability scores.
-    for (let [k, v] of Object.entries(context.data.abilities)) {
-      v.label = game.i18n.localize(CONFIG.BOILERPLATE.abilities[k]) ?? k;
+    // Handle aspect scores.
+    for (let [k, v] of Object.entries(context.data.aspects)) {
+      v.label = game.i18n.localize(CONFIG.THEWATCH.aspects[k]) ?? k;
     }
   }
 
@@ -83,19 +81,7 @@ export class TheWatchActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
-    const features = [];
-    const spells = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: []
-    };
+    const skills = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -104,22 +90,25 @@ export class TheWatchActorSheet extends ActorSheet {
       if (i.type === 'item') {
         gear.push(i);
       }
-      // Append to features.
-      else if (i.type === 'feature') {
-        features.push(i);
+      // Append to skills.
+      else if (i.type === 'skill') {
+        skills.push(i);
       }
-      // Append to spells.
-      else if (i.type === 'spell') {
-        if (i.data.spellLevel != undefined) {
-          spells[i.data.spellLevel].push(i);
-        }
-      }
+    }
+
+    if (skills.length == 0) {
+      const itemData = {
+        name: "Unskilled",
+        type: "skill",
+        img: "systems/thewatch/images/icons/shrug.svg",
+        data: {"description":"For use when performing an action without an applicable skill.", "edit": false, "formula":"d4"}
+      };
+      Item.create(itemData, {parent: this.actor});
     }
 
     // Assign and return
     context.gear = gear;
-    context.features = features;
-    context.spells = spells;
+    context.skills = skills;
    }
 
   /* -------------------------------------------- */
@@ -150,10 +139,7 @@ export class TheWatchActorSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
-    // Active Effect management
-    html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
-
-    // Rollable abilities.
+    // Rollable aspects.
     html.find('.rollable').click(this._onRoll.bind(this));
 
     // Drag events for macros.
@@ -209,13 +195,63 @@ export class TheWatchActorSheet extends ActorSheet {
       if (dataset.rollType == 'item') {
         const itemId = element.closest('.item').dataset.itemId;
         const item = this.actor.items.get(itemId);
-        if (item) return item.roll();
+
+        let d = new Dialog({
+          title: "Select Aspect",
+          content: "<p>Select an aspect to apply to this roll.</p>",
+          buttons: {
+           one: {
+            icon: '<i class="fas fa-theater-masks"></i>',
+            label: "Emotional",
+            callback: () => {
+              let r = new Roll(item.data.data.formula + "+@emo.value", item.getRollData())
+              r.toMessage()
+            }
+           },
+           two: {
+            icon: '<i class="fas fa-book-open"></i>',
+            label: "Intellectual",
+            callback: () => {
+              let r = new Roll(item.data.data.formula + "+@int.value", item.getRollData())
+              r.toMessage()
+            }
+           },
+           three: {
+            icon: '<i class="fas fa-heartbeat"></i>',
+            label: "Physical",
+            callback: () => {
+              let r = new Roll(item.data.data.formula + "+@phy.value", item.getRollData())
+              r.toMessage()
+            }
+           },
+           four: {
+            icon: '<i class="fas fa-at"></i>',
+            label: "Social",
+            callback: () => {
+              let r = new Roll(item.data.data.formula + "+@soc.value", item.getRollData())
+              r.toMessage()
+            }
+           },
+           five: {
+            icon: '<i class="fas fa-pastafarianism"></i>',
+            label: "Spiritual",
+            callback: () => {
+              let r = new Roll(item.data.data.formula + "+@sprt.value", item.getRollData())
+              r.toMessage()
+            }
+           }
+          },
+          default: "two",
+          // render: html => console.log("Register interactivity in the rendered dialog"),
+          // close: html => console.log("This always is logged no matter which option is chosen")
+         });
+         d.render(true);
       }
     }
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
-      let label = dataset.label ? `[ability] ${dataset.label}` : '';
+      let label = dataset.label ? `[aspect] ${dataset.label}` : '';
       let roll = new Roll(dataset.roll, this.actor.getRollData()).roll();
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),

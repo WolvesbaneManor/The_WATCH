@@ -7,9 +7,7 @@
   return loadTemplates([
 
     // Actor partials.
-    "systems/thewatch/templates/actor/parts/actor-features.html",
-    "systems/thewatch/templates/actor/parts/actor-items.html",
-    "systems/thewatch/templates/actor/parts/actor-spells.html",
-    "systems/thewatch/templates/actor/parts/actor-effects.html",
+    "systems/thewatch/templates/actor/parts/actor-skills.html",
+    "systems/thewatch/templates/actor/parts/actor-items.html"
   ]);
 };

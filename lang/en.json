@@ -1,22 +1,26 @@
 {
-  "BOILERPLATE.AbilityStr": "Strength",
-  "BOILERPLATE.AbilityCon": "Constitution",
-  "BOILERPLATE.AbilityDex": "Dexterity",
-  "BOILERPLATE.AbilityInt": "Intelligence",
-  "BOILERPLATE.AbilityWis": "Wisdom",
-  "BOILERPLATE.AbilityCha": "Charisma",
+  "THEWATCH.AspectEmotional": "Emotional",
+  "THEWATCH.AspectIntellectual": "Intellectual",
+  "THEWATCH.AspectPhysical": "Physical",
+  "THEWATCH.AspectSocial": "Social",
+  "THEWATCH.AspectSpiritual": "Spiritual",
 
-  "BOILERPLATE.AbilityStrAbbr": "str",
-  "BOILERPLATE.AbilityConAbbr": "con",
-  "BOILERPLATE.AbilityDexAbbr": "dex",
-  "BOILERPLATE.AbilityIntAbbr": "int",
-  "BOILERPLATE.AbilityWisAbbr": "wis",
-  "BOILERPLATE.AbilityChaAbbr": "cha",
+  "THEWATCH.AspectEmotionalAbbr": "emo",
+  "THEWATCH.AspectIntellectualAbbr": "int",
+  "THEWATCH.AspectPhysicalAbbr": "phy",
+  "THEWATCH.AspectSocialAbbr": "soc",
+  "THEWATCH.AspectSpiritualAbbr": "sprt",
 
-  "BOILERPLATE.EffectCreate": "Create Effect",
-  "BOILERPLATE.EffectToggle": "Toggle Effect",
-  "BOILERPLATE.EffectEdit": "Edit Effect",
-  "BOILERPLATE.EffectDelete": "Delete Effect",
+  "THEWATCH.EffectCreate": "Create Effect",
+  "THEWATCH.EffectToggle": "Toggle Effect",
+  "THEWATCH.EffectEdit": "Edit Effect",
+  "THEWATCH.EffectDelete": "Delete Effect",
 
-  "BOILERPLATE.Add": "Add"
+  "THEWATCH.d4": "d4",
+  "THEWATCH.d6": "d6",
+  "THEWATCH.d8": "d8",
+  "THEWATCH.d10": "d10",
+  "THEWATCH.d12": "d12",
+
+  "THEWATCH.Add": "Add"
 }

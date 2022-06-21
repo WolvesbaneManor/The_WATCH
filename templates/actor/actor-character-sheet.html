@@ -1,109 +1,89 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
-
-  {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-      use both the "grid" and "grid-Ncol" class where "N" can be any number
-      from 1 to 12 and will create that number of columns.  --}}
-      <div class="resources grid grid-3col">
-
-        {{!-- "flex-group-center" is also defined in the _grid.scss file
-        and it will add a small amount of padding, a border, and will
-        center all of its child elements content and text. --}}
-        <div class="resource flex-group-center">
-          <label for="data.health.value" class="resource-label">Health</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
-          <span> / </span>
-          <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number"/>
+<form class="{{cssClass}} {{actor.type}}" autocomplete="off">
+  <div class="sheet-top">
+    <div class="resources grid grid-2col">
+        <div class="post-it">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+        </div>
+        <div class="resource flex-group-center flexrow">
+          <div class="flexcol">
+            <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="aspects">
+              {{#each data.aspects as |aspect key|}}
+              <div class="flex-group-center flexrow">
+                <label for="data.aspects.{{key}}.value" class="resource-label flexlarge align-left"
+                  data-label="{{aspect.label}}">{{aspect.label}}</label>
+                <select name="data.aspects.{{key}}.value" id="data.aspects.{{key}}.value">
+                  {{selectOptions ../cfg.dieTypes selected=aspect.value localize=true}}
+                </select>
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.one" {{checked aspect.one}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.two" {{checked aspect.two}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.three" {{checked aspect.three}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.four" {{checked aspect.four}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.five" {{checked aspect.five}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.six" {{checked aspect.six}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.seven" {{checked aspect.seven}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.eight" {{checked aspect.eight}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.nine" {{checked aspect.nine}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.ten" {{checked aspect.ten}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.eleven" {{checked aspect.eleven}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.twelve" {{checked aspect.twelve}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.thirteen" {{checked aspect.thirteen}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.fourteen" {{checked aspect.fourteen}} />
+                <input class="stressbox" type="checkbox" name="data.aspects.{{key}}.fifteen" {{checked aspect.fifteen}} />
+                <input class="stressbox stressbox-crit" type="checkbox" name="data.aspects.{{key}}.sixteen" {{checked aspect.sixteen}} />
+              </div>
+              {{/each}}
+            </div>
+            <div class="resource flex-group-center">
+              <div class="resource-content flexcol">
+                <br />
+                <label for="data.xpTokens" class="resource-label">Experience Tokens</label>
+                <div>
+                  <input type="checkbox" name="data.xpTokens.first" {{checked data.xpTokens.first}} />
+                  <input type="checkbox" name="data.xpTokens.second" {{checked data.xpTokens.second}} />
+                  <input type="checkbox" name="data.xpTokens.third" {{checked data.xpTokens.third}} />
+                  <input type="checkbox" name="data.xpTokens.fourth" {{checked data.xpTokens.fourth}} />
+                  <input type="checkbox" name="data.xpTokens.fifth" {{checked data.xpTokens.fifth}} />
+                  <input type="checkbox" name="data.xpTokens.sixth" {{checked data.xpTokens.sixth}} />
+                  <input type="checkbox" name="data.xpTokens.seventh" {{checked data.xpTokens.seventh}} />
+                  <input type="checkbox" name="data.xpTokens.eighth" {{checked data.xpTokens.eighth}} />
+                  <input type="checkbox" name="data.xpTokens.ninth" {{checked data.xpTokens.ninth}} />
+                  <input type="checkbox" name="data.xpTokens.tenth" {{checked data.xpTokens.tenth}} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="resource flex-group-center">
-          <label for="data.power.value" class="resource-label">Power</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="data.power.value" value="{{data.power.value}}" data-dtype="Number"/>
-          <span> / </span>
-          <input type="text" name="data.power.max" value="{{data.power.max}}" data-dtype="Number"/>
+    </div>
+    <div class="namelabel">{{actor.name}}</div>
+  </div>
+  <div class="sheet-mid">
+    <div class="resources grid grid-2col">
+      <div class="resource flex-group-center" style="width: 90%;">
+            Biography
+            <textarea name="data.biography" rows="15">{{data.biography}}</textarea>
+      </div>
+      <div class="resource flex-group-center" style="width: 90%;">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+          {{!-- Default tab is specified in actor-sheet.mjs --}}
+          <a class="item" data-tab="skills">Skills</a>
+          <a class="item" data-tab="items">Equipment</a>
+        </nav>
+        <section class="sheet-body">
+          {{!-- Owned Features Tab --}}
+          <div class="tab skills" data-group="primary" data-tab="skills">
+            {{!-- For the main skills list, span the right two columns --}}
+            {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
+            {{> "systems/thewatch/templates/actor/parts/actor-skills.html"}}
           </div>
-        </div>
-
-        <div class="resource flex-group-center">
-          <label for="data.attributes.level.value" class="resource-label">Level</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="data.attributes.level.value" value="{{data.attributes.level.value}}" data-dtype="Number"/>
+          {{!-- Owned Items Tab --}}
+          <div class="tab items" data-group="primary" data-tab="items">
+            {{> "systems/thewatch/templates/actor/parts/actor-items.html"}}
           </div>
-        </div>
-
+        </section>
       </div>
     </div>
-  </header>
-
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="features">Features</a>
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="spells">Spells</a>
-    <a class="item" data-tab="effects">Effects</a>
-  </nav>
-
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
-
-    {{!-- Owned Features Tab --}}
-    <div class="tab features" data-group="primary" data-tab="features">
-      <section class="grid grid-3col">
-        <aside class="sidebar">
-
-          {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-          use both the "grid" and "grid-Ncol" class where "N" can be any number
-          from 1 to 12 and will create that number of columns.  --}}
-          <div class="abilities flexcol">
-            {{#each data.abilities as |ability key|}}
-            <div class="ability flexrow flex-group-center">
-              <label for="data.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.mod" data-label="{{ability.label}}">{{ability.label}}</label>
-              <input type="text" name="data.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-              <span class="ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{ability.label}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
-            </div>
-            {{/each}}
-          </div>
-        </aside>
-
-        {{!-- For the main features list, span the right two columns --}}
-        <section class="main grid-span-2">
-          {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-          {{> "systems/thewatch/templates/actor/parts/actor-features.html"}}
-        </section>
-
-      </section>
-    </div>
-
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{!-- If you want TinyMCE editors to output inline rolls when rendered, you need to pass the actor's roll data to the rollData property. --}}
-      {{editor content=data.biography target="data.biography" rollData=rollData button=true owner=owner editable=editable}}
-    </div>
-
-    {{!-- Owned Items Tab --}}
-    <div class="tab items" data-group="primary" data-tab="items">
-       {{> "systems/thewatch/templates/actor/parts/actor-items.html"}}
-    </div>
-
-    {{!-- Owned Spells Tab --}}
-    <div class="tab spells" data-group="primary" data-tab="spells">
-      {{> "systems/thewatch/templates/actor/parts/actor-spells.html"}}
-    </div>
-
-    {{!-- Active Effects Tab --}}
-    <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-      {{> "systems/thewatch/templates/actor/parts/actor-effects.html"}}
-    </div>
-
-  </section>
+  </div>
+  <div class="sheet-bottom"></div>
 </form>
-

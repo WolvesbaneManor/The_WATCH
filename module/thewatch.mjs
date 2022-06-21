@@ -6,7 +6,7 @@ import { TheWatchActorSheet } from "./sheets/actor-sheet.mjs";
 import { TheWatchItemSheet } from "./sheets/item-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-import { BOILERPLATE } from "./helpers/config.mjs";
+import { THEWATCH } from "./helpers/config.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -23,14 +23,14 @@ Hooks.once('init', async function() {
   };
 
   // Add custom constants for configuration.
-  CONFIG.BOILERPLATE = BOILERPLATE;
+  CONFIG.THEWATCH = THEWATCH;
 
   /**
    * Set an initiative formula for the system
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20 + @abilities.dex.mod",
+    formula: "1d20 + @aspects.dex.mod",
     decimals: 2
   };
 
@@ -65,6 +65,25 @@ Handlebars.registerHelper('concat', function() {
 
 Handlebars.registerHelper('toLowerCase', function(str) {
   return str.toLowerCase();
+});
+
+Handlebars.registerHelper('eq', function(a, b) {
+  return (a === b);
+});
+Handlebars.registerHelper('gt', function(a, b) {
+  return (a > b);
+});
+Handlebars.registerHelper('gte', function(a, b) {
+  return (a >= b);
+});
+Handlebars.registerHelper('lt', function(a, b) {
+  return (a < b);
+});
+Handlebars.registerHelper('lte', function(a, b) {
+  return (a <= b);
+});
+Handlebars.registerHelper('ne', function(a, b) {
+  return (a !== b);
 });
 
 /* -------------------------------------------- */

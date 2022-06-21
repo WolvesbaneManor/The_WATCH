@@ -1,23 +1,39 @@
-export const BOILERPLATE = {};
+export const THEWATCH = {};
 
 /**
- * The set of Ability Scores used within the sytem.
+ * The set of Aspect Scores used within the system.
  * @type {Object}
  */
- BOILERPLATE.abilities = {
-  "str": "BOILERPLATE.AbilityStr",
-  "dex": "BOILERPLATE.AbilityDex",
-  "con": "BOILERPLATE.AbilityCon",
-  "int": "BOILERPLATE.AbilityInt",
-  "wis": "BOILERPLATE.AbilityWis",
-  "cha": "BOILERPLATE.AbilityCha"
+ THEWATCH.aspects = {
+  "emo": "THEWATCH.AspectEmotional",
+  "int": "THEWATCH.AspectIntellectual",
+  "phy": "THEWATCH.AspectPhysical",
+  "soc": "THEWATCH.AspectSocial",
+  "sprt": "THEWATCH.AspectSpiritual"
 };
 
-BOILERPLATE.abilityAbbreviations = {
-  "str": "BOILERPLATE.AbilityStrAbbr",
-  "dex": "BOILERPLATE.AbilityDexAbbr",
-  "con": "BOILERPLATE.AbilityConAbbr",
-  "int": "BOILERPLATE.AbilityIntAbbr",
-  "wis": "BOILERPLATE.AbilityWisAbbr",
-  "cha": "BOILERPLATE.AbilityChaAbbr"
+THEWATCH.aspectAbbreviations = {
+  "emo": "THEWATCH.AspectEmotionalAbbr",
+  "int": "THEWATCH.AspectIntellectualAbbr",
+  "phy": "THEWATCH.AspectPhysicalAbbr",
+  "soc": "THEWATCH.AspectSocialAbbr",
+  "sprt": "THEWATCH.AspectSpiritualAbbr"
 };
+
+THEWATCH.dieTypes = {
+  "d4": "THEWATCH.d4",
+  "d6": "THEWATCH.d6",
+  "d8": "THEWATCH.d8",
+  "d10": "THEWATCH.d10",
+  "d12": "THEWATCH.d12"
+};
+
+THEWATCH.clocks = {
+  "3": "3",
+  "4": "4",
+  "6": "6",
+  "8": "8",
+  "9": "9",
+  "10": "10",
+  "12": "12"
+}

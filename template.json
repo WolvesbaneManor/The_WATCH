@@ -3,15 +3,12 @@
     "types": ["character", "npc"],
     "templates": {
       "base": {
-        "health": {
-          "value": 10,
-          "min": 0,
-          "max": 10
-        },
-        "power": {
-          "value": 5,
-          "min": 0,
-          "max": 5
+        "xptokens": {
+          "value": 0,
+          "first": false,
+          "second": false,
+          "third": false,
+          "fourth": false
         },
         "biography": ""
       }
@@ -23,24 +20,21 @@
           "value": 1
         }
       },
-      "abilities": {
-        "str": {
-          "value": 10
-        },
-        "dex": {
-          "value": 10
-        },
-        "con": {
-          "value": 10
+      "aspects": {
+        "emo": {
+          "value": 4
         },
         "int": {
-          "value": 10
+          "value": 4
         },
-        "wis": {
-          "value": 10
+        "phy": {
+          "value": 4
         },
-        "cha": {
-          "value": 10
+        "soc": {
+          "value": 4
+        },
+        "sprt": {
+          "value": 4
         }
       }
     },
@@ -50,7 +44,7 @@
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
+    "types": ["item", "skill", "clock"],
     "templates": {
       "base": {
         "description": ""
@@ -62,12 +56,17 @@
       "weight": 0,
       "formula": "d20 + @str.mod + ceil(@lvl / 2)"
     },
-    "feature": {
-      "templates": ["base"]
-    },
-    "spell": {
+    "skill": {
       "templates": ["base"],
-      "spellLevel": 1
+      "edit": true,
+      "formula": "d6"
+    },
+    "clock": {
+      "templates": ["base"],
+      "segments": "8",
+      "increment": "45",
+      "currentFill": "0",
+      "clockImg": "EightClock.svg"
     }
   }
 }

@@ -1,0 +1,58 @@
+<form class="{{cssClass}} item-sheet" autocomplete="off">
+  <header class="sheet-header">
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="attributes">Attributes</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    {{!-- Description Tab --}}
+    <div class="tab" data-group="primary" data-tab="description">
+      <div class="container">
+        <div class="resources grid grid-2col">
+          <div class="resource flex-group-left">
+            <a class="item-control" id="advance">Increment</a>
+          </div>
+          <div class="resource flex-group-right">
+            <a class="item-control" id="decrement">Decrement</a>
+          </div>
+        </div>
+        <div class="clock">
+        <div class="clockface">
+          {{#if (gt data.currentFill "180")}}
+          <div class="half-circle" style="transform: rotate(180deg);"></div>
+          <div class="half-circle" style="transform: rotate({{data.currentFill}}deg);"></div>
+          <div class="half-circle-top" style="opacity: 0;"></div>
+          {{else}}
+          <div class="half-circle" style="transform: rotate({{data.currentFill}}deg);"></div>
+          <div class="half-circle" style="transform: rotate({{data.currentFill}}deg);"></div>
+          <div class="half-circle-top" style="opacity: 1;"></div>
+          {{/if}}
+       </div>
+        <img src="systems/thewatch/images/clocks/{{data.clockImg}}" id="clockImg" />
+      </div>
+    </div>
+    </div>
+
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      <input type="hidden" name="data.currentFill" id="currentFill" value="{{data.currentFill}}" />
+      <input type="hidden" name="data.increment" id="increment" value="{{data.increment}}" />
+      <input type="hidden" name="data.clockImg" value="{{data.clockImg}}" />
+      <div class="resource">
+        <label for="data.segments" class="resource-label">Clock Type</label>
+          <select name="data.segments" id="segments">
+          {{selectOptions cfg.clocks selected=data.segments localize=true}}
+        </select>
+      </div>
+    </div>
+  </section>
+</form>

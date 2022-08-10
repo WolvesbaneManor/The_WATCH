@@ -2,7 +2,7 @@
   "name": "thewatch",
   "title": "The W.A.T.C.H.",
   "description": "A paranormal investigation role-playing game.",
-  "version": "0.3",
+  "version": "0.3.1",
   "minimumCoreVersion": "0.8.3",
   "compatibleCoreVersion": "0.9",
   "author": "Wolvesbane Manor",

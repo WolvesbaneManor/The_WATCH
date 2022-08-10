@@ -3,6 +3,16 @@
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <div class="resource flexrow">
+          <div class="resource-content flexcol flex-group-center">
+            <label for="data.formula" class="resource-label">Initial Cost</label>
+            <input type="text" name="initial" value="{{item.initial}}" data-dtype="Number" style="width: 50px" />
+          </div>
+          <div class="resource-content flexcol  flex-group-center">
+            <label for="data.formula" class="resource-label">Upgrade Cost</label>
+            <input type="text" name="upgrade" value="{{item.upgrade}}" data-dtype="Number"  style="width: 50px" />
+          </div>
+        </div>
     </div>
   </header>
 

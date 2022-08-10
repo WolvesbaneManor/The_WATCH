@@ -391,9 +391,10 @@ option {
   -ms-flex: 0 0 150px;
   flex: 0 0 150px;
   height: 150px;
+  margin-left: 10px;
   margin-right: 10px;
   vertical-align: top;
-  border: 0;
+  border: 0px;
 }
 
 .thewatch .sheet-header .header-fields {
@@ -428,6 +429,7 @@ option {
 }
 
 .thewatch .post-it {
+  float: left;
   position:relative;
   margin: 10px;
   background-color: cornflowerblue;

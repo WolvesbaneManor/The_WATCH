@@ -1,8 +1,14 @@
 <form class="{{cssClass}} {{actor.type}}" autocomplete="off">
   <div class="sheet-top">
     <div class="resources grid grid-2col">
-        <div class="post-it">
-          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+      <div class="resource flex-group-center flexrow" style="width: 90%; margin-left: 10px;">
+        <div class="flexcol" style="background: #cccccc">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="border: 0;" />
+        </div>
+        <div class="flexcol">
+          Biography
+          <textarea name="data.biography" rows="15">{{data.biography}}</textarea>
+        </div>
         </div>
         <div class="resource flex-group-center flexrow">
           <div class="flexcol">
@@ -60,8 +66,8 @@
   <div class="sheet-mid">
     <div class="resources grid grid-2col">
       <div class="resource flex-group-center" style="width: 90%;">
-            Biography
-            <textarea name="data.biography" rows="15">{{data.biography}}</textarea>
+        Notes
+        <textarea name="data.notes" rows="15">{{data.notes}}</textarea>
       </div>
       <div class="resource flex-group-center" style="width: 90%;">
         {{!-- Sheet Tab Navigation --}}
